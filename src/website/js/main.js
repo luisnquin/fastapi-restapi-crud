@@ -42,9 +42,46 @@ function appendContent(movie, context) {
     updateButton.innerText = "Update";
     updateButton.setAttribute("href", `http://127.0.0.1:8000/movies/${movie.id}`);
     updateButton.setAttribute("class", "update-button");
+    updateButton.onclick = function(e){
+        e.preventDefault();
+
+        context.innerHTML = '';
+
+        let formulary = document.createElement("form");
+        let formularyDiv = document.createElement("div");
+        let label_m_title = document.createElement("label");
+        let input_m_title = document.createElement("input");
+        let label_m_genres = document.createElement("label");
+        let input_m_genres = document.createElement("input");
+
+        formulary.setAttribute("action", `http://127.0.0.1:8000/movies/`);
+        formulary.setAttribute("method", "post");
+
+        label_m_title.setAttribute("for", "input-m-title");
+        label_m_title.innerText = 'Movie title';
+        input_m_title.setAttribute("id", "input-m-title");
+        input_m_title.setAttribute("placeholder", "Enter a title here");
+        input_m_title.setAttribute("name", "title");
+
+        label_m_genres.setAttribute("for", "input-m-genres");
+        label_m_genres.innerText = 'Movie genres';
+        input_m_genres.setAttribute("id", "input-m-genres");
+        input_m_genres.setAttribute("placeholder", "Enter the genres here");
+        input_m_genres.setAttribute("name", "genres");
+
+        formularyDiv.appendChild(label_m_title);
+        formularyDiv.appendChild(input_m_title);
+
+        formularyDiv.appendChild(label_m_genres);
+        formularyDiv.appendChild(input_m_genres);
+
+        formulary.appendChild(formularyDiv);
+        context.appendChild(formulary);
+    }
     
     deleteButton.innerHTML = "Delete";
     deleteButton.setAttribute("href", `http://127.0.0.1:8000/movies/${movie.id}`);
+    deleteButton.setAttribute("class", "delete-button");
     deleteButton.onclick = function (e) {
         e.preventDefault();
 
@@ -58,7 +95,7 @@ function appendContent(movie, context) {
         });
     }
     
-    deleteButton.setAttribute("class", "delete-button");
+    
 
     for(let i=0; i<4; i++){
         contentItemDiv.appendChild(contentIParag[i]);
