@@ -23,7 +23,7 @@
 * body header #header-items nav {
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  gap: 75px;
 }
 * body header #header-items nav li {
   list-style: none;
@@ -49,9 +49,32 @@
   margin: 50px 0 0 0;
   padding: 50px;
 }
-* body main .content .content-item p {
-  margin: 0px 0 20px 0;
-  font-size: larger;
+* body main .content .content-item .content-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  float: right;
+  position: relative;
+  bottom: 75px;
+}
+* body main .content .content-item .content-buttons .update-button,
+* body main .content .content-item .content-buttons .delete-button {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 5px 10px 5px 10px;
+  border-radius: 3px;
+}
+* body main .content .content-item .content-buttons .update-button {
+  background: #bd8422;
+}
+* body main .content .content-item .content-buttons .update-button:hover {
+  background: #b39666;
+}
+* body main .content .content-item .content-buttons .delete-button {
+  background: #ad2d2d;
+}
+* body main .content .content-item .content-buttons .delete-button:hover {
+  background: #b35968;
 }
 * body footer {
   display: flex;

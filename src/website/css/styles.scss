@@ -21,7 +21,7 @@
         nav {
           display: flex;
           flex-direction: row;
-          gap: 25px;
+          gap: 75px;
           li {
             list-style: none;
             a {
@@ -52,9 +52,33 @@
         margin: 50px 0 0 0;
         padding: 50px;
         .content-item {
-          p {
-            margin: 0px 0 20px 0;
-            font-size: larger;
+          .content-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            float: right;
+
+            position: relative;
+            bottom: 75px;
+            .update-button,
+            .delete-button {
+              text-decoration: none;
+              color: #ffffff;
+              padding: 5px 10px 5px 10px;
+              border-radius: 3px;
+            }
+            .update-button {
+              background: #bd8422;
+            }
+            .update-button:hover {
+              background: #b39666;
+            }
+            .delete-button {
+              background: #ad2d2d;
+            }
+            .delete-button:hover {
+              background: #b35968;
+            }
           }
         }
       }
