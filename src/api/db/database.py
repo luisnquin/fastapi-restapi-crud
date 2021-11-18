@@ -20,6 +20,8 @@ def executeQuery(action: str, requestdata: list = None, id: int = None, howmuch:
                 case "MANY":
                     cursor.execute(f"SELECT * FROM {table_name}")
                     data = cursor.fetchall()
+                    print(data)
+                    print(type(data))
 
                     cursor.close()
                     connection.close()
