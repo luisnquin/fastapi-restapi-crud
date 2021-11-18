@@ -27,9 +27,12 @@ function appendContent(movie, context) {
     for(let i=0; i<4; i++){
         contentIParag.push(document.createElement("p"));
     }
-    
+
+    let genresText = "";
+    movie.movie_genres.indexOf("|") ? movie.movie_genres.split("|").forEach(gender => {genresText = `${genresText} ${gender}, `}) : movie.movie_genres;
+
     contentIParag[0].innerText = `Title: ${movie.movie_title}`;
-    contentIParag[1].innerText = `Genres: ${movie.movie_genres}`;
+    contentIParag[1].innerText = `Genres: ${genresText.substring(0, genresText.length - 2)}.`;
     contentIParag[2].innerText = `Agender: ${movie.date}`;
     contentIParag[3].innerText = `Company: ${movie.company_name}`;
     
