@@ -22,6 +22,20 @@ insert into movie_data (movie_title, movie_genres, gender, stock_name) values ('
 insert into movie_data (movie_title, movie_genres, gender, stock_name) values ('Water-mirror of Granada', 'Documentary', '2/2/2021', 'Delta Technology Holdings Limited');
 insert into movie_data (movie_title, movie_genres, gender, stock_name) values ('Fantastic Fear of Everything, A', 'Comedy', '3/4/2021', 'China Petroleum & Chemical Corporation');
 ```
+In JSON:
+```
+[{"movie_title":"Animals are Beautiful People","movie_genres":"Comedy|Documentary","gender":"3/9/2021","stock_name":"Paychex, Inc."},
+{"movie_title":"Carpenter, The","movie_genres":"Horror|Thriller","gender":"29/8/2021","stock_name":"Heron Therapeutics, Inc.  "},
+{"movie_title":"Muse, The","movie_genres":"Comedy","gender":"20/3/2021","stock_name":"WMIH Corp."},
+{"movie_title":"One Little Indian","movie_genres":"Comedy|Western","gender":"20/1/2021","stock_name":"Hudson Technologies, Inc."},
+{"movie_title":"Woman Obsessed","movie_genres":"Drama|Romance","gender":"14/10/2021","stock_name":"Airgain, Inc."},
+{"movie_title":"South Shaolin Master, The (Nan quan wang)","movie_genres":"Action|Adventure|Drama","gender":"12/7/2021","stock_name":"Triumph Bancorp, Inc."},
+{"movie_title":"Exiles (Exils)","movie_genres":"Adventure|Drama","gender":"27/8/2021","stock_name":"First Trust Latin America AlphaDEX Fund"},
+{"movie_title":"Sinister","movie_genres":"Horror|Thriller","gender":"19/1/2021","stock_name":"Acadia Realty Trust"},
+{"movie_title":"Someone Like Him (Einer wie Bruno)","movie_genres":"Comedy|Drama","gender":"24/8/2021","stock_name":"Sonoma Pharmaceuticals, Inc."},
+{"movie_title":"Zona Zamfirova","movie_genres":"Comedy|Drama","gender":"25/4/2021","stock_name":"Central Federal Corporation"},
+{"movie_title":"Some Girl","movie_genres":"Comedy|Drama","gender":"19/1/2021","stock_name":"Provident Financial Services, Inc"}]
+```
 
 Data generated from <a href="https://mockaroo.com/">mockaroo.com</a>.
 <br><br><br>
@@ -49,3 +63,4 @@ And ```LiveServer```, ```port 5500```.
 
 #### Update movie
 <img src="https://i.ibb.co/dpy1tYF/update.png" alt="update">
+
