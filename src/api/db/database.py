@@ -18,7 +18,8 @@ def executeQuery(action: str, requestdata: list = None, id: int = None, howmuch:
         case "GET":
             match howmuch:
                 case "MANY":
-                    cursor.execute(f"SELECT * FROM {table_name}")
+                    cursor.execute(
+                        f"SELECT * FROM {table_name} ORDER BY id ASC")
                     data = cursor.fetchall()
 
                     cursor.close()
@@ -37,7 +38,7 @@ def executeQuery(action: str, requestdata: list = None, id: int = None, howmuch:
 
         case "POST":
             cursor.execute(
-                f"INSERT INTO {table_name}(movie_title, movie_genres, date, company_name) VALUES('{requestdata[0]}', '{requestdata[1]}', '{requestdata[2]}', '{requestdata[3]}')")
+                f"INSERT INTO {table_name}(movie_title, movie_genres, date, company_name) VALUES({requestdata[0]}, {requestdata[1]}, '{requestdata[2]}', {requestdata[3]})")
             connection.commit()
 
             cursor.close()
@@ -46,7 +47,7 @@ def executeQuery(action: str, requestdata: list = None, id: int = None, howmuch:
 
         case "PUT":
             cursor.execute(
-                f"UPDATE {table_name} SET movie_title='{requestdata[0]}', movie_genres='{requestdata[1]}', date='{requestdata[2]}', company_name='{requestdata[3]}' WHERE id={id}")
+                f"UPDATE {table_name} SET movie_title={requestdata[0]}, movie_genres={requestdata[1]}, date='{requestdata[2]}', company_name={requestdata[3]} WHERE id={id}")
             connection.commit()
 
             cursor.close()

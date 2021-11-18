@@ -40,6 +40,7 @@
   background: #ebebeb;
   border-radius: 3px;
   max-width: 60%;
+  min-height: 100vh;
   margin: auto;
 }
 * body main .content {
@@ -76,11 +77,33 @@
 * body main .content .content-item .content-buttons .delete-button:hover {
   background: #b35968;
 }
+* body main .formulary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: center;
+  max-width: 60%;
+  margin: auto;
+  font-size: 25px;
+}
+* body main .formulary-content input {
+  text-align: center;
+}
+* body main .formulary-content #submit-send {
+  background: #262626;
+  color: #ffffff;
+  font: inherit;
+  border: solid 1px #000000;
+  border-radius: 5px;
+  padding: 3px 10px 3px 10px;
+  margin: 25px 0 0 0;
+}
 * body footer {
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  align-self: flex-end;
   width: 100%;
   background: #222422;
   color: #ffffff;
