@@ -1,6 +1,6 @@
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from fastapi import FastAPI
 
 
 from db.database import executeQuery
@@ -9,8 +9,8 @@ from db.database import executeQuery
 class Movie(BaseModel):
     movie_title: str
     movie_genres: str
-    gender: str
-    stock_name: str
+    date: str
+    company_name: str
 
 
 def jsonify(data):
@@ -19,20 +19,20 @@ def jsonify(data):
             "id": data[0],
             "movie_title": data[1],
             "movie_genres": data[2],
-            "agender": data[3],
-            "stock_name": data[4],
+            "date": data[3],
+            "company_name": data[4],
         }
     else:
-        json = []
+        json_format = []
         for row in data:
-            json.append({
+            json_format.append({
                 "id": row[0],
                 "movie_title": row[1],
                 "movie_genres": row[2],
-                "agender": row[3],
-                "stock_name": row[4],
+                "date": row[3],
+                "company_name": row[4],
             })
-        return json
+        return json_format
 
 
 app = FastAPI()
@@ -60,24 +60,18 @@ def getOneMovie(id):
 def addOneMovie(movie: Movie):
     executeQuery(action="POST", requestdata=[movie.movie_title,
                                              movie.movie_genres,
-                                             movie.gender,
-                                             movie.stock_name])
-    return
+                                             movie.date,
+                                             movie.company_name])
 
 
 @app.put("/movies/{id:int}")
 def updateOneMovie(movie: Movie, id):
     executeQuery(action="PUT", id=id, requestdata=[movie.movie_title,
                                                    movie.movie_genres,
-                                                   movie.gender,
-                                                   movie.stock_name])
-    return
+                                                   movie.date,
+                                                   movie.company_name])
 
 
 @app.delete("/movies/{id:int}")
 def deleteOneMovie(id):
     executeQuery(action="DELETE", id=id)
-    return
-
-
-"""create table movie_data (id SERIAL PRIMARY KEY, movie_title VARCHAR(110), movie_genres VARCHAR(50), gender DATE, stock_name VARCHAR(70));"""
