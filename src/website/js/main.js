@@ -45,6 +45,19 @@ function appendContent(movie, context) {
     
     deleteButton.innerHTML = "Delete";
     deleteButton.setAttribute("href", `http://127.0.0.1:8000/movies/${movie.id}`);
+    deleteButton.onclick = function (e) {
+        e.preventDefault();
+
+        return fetch(`http://127.0.0.1:8000/movies/${movie.id}`, {
+            method: 'DELETE'
+        })
+        .then((response) => response.json())
+        .then(function() {
+            let childToDelete = document.getElementById(`${movie.id}`);
+            context.removeChild(childToDelete);
+        });
+    }
+    
     deleteButton.setAttribute("class", "delete-button");
 
     for(let i=0; i<4; i++){
