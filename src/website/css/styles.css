@@ -2,5 +2,55 @@
   padding: 0;
   margin: 0;
 }
+* body {
+  background: #2a2f38;
+  font-family: "Ubuntu", sans-serif;
+}
+* body header {
+  width: 100%;
+  background: #3062ba;
+  box-shadow: 1px 1px 1px;
+}
+* body header #header-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+}
+* body header #header-items h1 {
+  color: #ffffff;
+}
+* body header #header-items nav {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+* body header #header-items nav li {
+  list-style: none;
+}
+* body header #header-items nav li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: larger;
+}
+* body header #header-items nav li a:hover {
+  text-decoration: underline;
+}
+* body main {
+  background: #ebebeb;
+  border-radius: 3px;
+  max-width: 60%;
+  margin: auto;
+}
+* body main .content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 50px 0 0 0;
+  padding: 50px;
+}
+* body main .content .content-item p {
+  font-size: larger;
+}
 
 /*# sourceMappingURL=styles.css.map */
