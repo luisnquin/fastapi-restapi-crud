@@ -19,7 +19,7 @@ def jsonify(data):
             "id": data[0],
             "movie_title": data[1],
             "movie_genres": data[2],
-            "gender": data[3],
+            "agender": data[3],
             "stock_name": data[4],
         }
     else:
@@ -29,7 +29,7 @@ def jsonify(data):
                 "id": row[0],
                 "movie_title": row[1],
                 "movie_genres": row[2],
-                "gender": row[3],
+                "agender": row[3],
                 "stock_name": row[4],
             })
         return json

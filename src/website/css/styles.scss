@@ -53,9 +53,30 @@
         padding: 50px;
         .content-item {
           p {
+            margin: 0px 0 20px 0;
             font-size: larger;
           }
         }
+      }
+    }
+    footer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+
+      width: 100%;
+      background: #222422;
+      color: #ffffff;
+
+      margin: 50px 0 0 0;
+      padding: 40px 0 60px 0;
+      a {
+        text-decoration: none;
+        color: #ffffff;
+      }
+      a:hover {
+        text-decoration: underline;
       }
     }
   }
