@@ -39,6 +39,13 @@ function appendContent(movie, context) {
     contentItemDiv.setAttribute("class", "content-info-div")
     contentItemDivButtons.setAttribute("class", "content-buttons")
 
+    let addbutton = document.getElementById("add-content");
+    addbutton.onclick = function(e) {
+        e.preventDefault();
+        createFormulary(undefined, context, 'POST');
+    };
+    
+
     updateButton.innerText = "Update";
     updateButton.setAttribute("href", `http://127.0.0.1:8000/movies/${movie.id}`);
     updateButton.setAttribute("class", "update-button");
@@ -47,7 +54,7 @@ function appendContent(movie, context) {
 
         fetch(`http://127.0.0.1:8000/movies/${movie.id}`, {})
         .then(response => response.json())
-        .then(movie_data => createFormulary(movie_data, context));
+        .then(movie_data => createFormulary(movie_data, context, 'PUT'));
     }
     
     deleteButton.innerHTML = "Delete";
@@ -82,7 +89,7 @@ function appendContent(movie, context) {
     context.appendChild(contentItem);
 }
 
-function createFormulary(movie_data, context) {
+function createFormulary(movie_data, context, method) {
     context.innerHTML = '';
     let formulary = document.createElement("form");
     let formularyDiv = document.createElement("div");
@@ -96,8 +103,14 @@ function createFormulary(movie_data, context) {
     let input_m_company = document.createElement("input");
     let input_m_send = document.createElement("input");
 
-    formulary.setAttribute("action", `http://127.0.0.1:8000/movies/${movie_data.movie_title}`);
-    formulary.setAttribute("method", "post");
+    // Decoration
+    if (method === 'PUT') {
+        formulary.setAttribute("action", `http://127.0.0.1:8000/movies/${movie_data.movie_title}`);
+        formulary.setAttribute("method", "post");
+    } else if (method === 'POST') {
+        formulary.setAttribute("action", `http://127.0.0.1:8000/movies`);
+        formulary.setAttribute("method", "post");
+    }
 
     label_m_title.setAttribute("for", "input-m-title");
     label_m_title.innerText = 'Movie title';
@@ -105,31 +118,34 @@ function createFormulary(movie_data, context) {
     input_m_title.setAttribute("placeholder", "Enter a title here");
     input_m_title.setAttribute("type", "text");
     input_m_title.setAttribute("name", "title");
-    input_m_title.setAttribute("value", `${movie_data.movie_title}`)
-
+    
     label_m_genres.setAttribute("for", "input-m-genres");
     label_m_genres.innerText = 'Movie genres';
     input_m_genres.setAttribute("id", "input-m-genres");
     input_m_genres.setAttribute("placeholder", "Enter the genres here");
     input_m_genres.setAttribute("type", "text");
     input_m_genres.setAttribute("name", "genres");
-    input_m_genres.setAttribute("value", `${movie_data.movie_genres}`)
-
+    
     label_m_date.setAttribute("for", "input-m-title");
     label_m_date.innerText = "Date";
     input_m_date.setAttribute("id", "input-m-title");
     input_m_date.setAttribute("placeholder", "Insert date here, format(DD/M/YYYY)");
     input_m_date.setAttribute("type", "date");
     input_m_date.setAttribute("name", "date");
-    input_m_date.setAttribute("value", `${movie_data.date}`)
-
+    
     label_m_company.setAttribute("for", "input-m-company");
     label_m_company.innerText = "Company name";
     input_m_company.setAttribute("id", "input-m-company");
     input_m_company.setAttribute("placeholder", "Insert company name here");
     input_m_company.setAttribute("type", "text");
     input_m_company.setAttribute("name", "company");
-    input_m_company.setAttribute("value", `${movie_data.company_name}`)
+    
+    if (method === 'PUT') {
+        input_m_title.setAttribute("value", `${movie_data.movie_title}`)
+        input_m_genres.setAttribute("value", `${movie_data.movie_genres}`)
+        input_m_date.setAttribute("value", `${movie_data.date}`)
+        input_m_company.setAttribute("value", `${movie_data.company_name}`)
+    }
 
     input_m_send.setAttribute("type", "submit");
     input_m_send.setAttribute("value", "Send");
@@ -150,24 +166,46 @@ function createFormulary(movie_data, context) {
     formulary.appendChild(formularyDiv);
     context.appendChild(formulary);
     
+    if (method === 'PUT') {
+        input_m_send.onclick = function(e) {
+            e.preventDefault();
+    
+            fetch(`http://127.0.0.1:8000/movies/${movie_data.id}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'PUT',
+                body: JSON.stringify({
+                    'movie_title': analyzingData(input_m_title.value),
+                    'movie_genres': analyzingData(input_m_genres.value),
+                    'date': input_m_date.value,
+                    'company_name': analyzingData(input_m_company.value)
+                })
+            }).then(res => res.json())
+            .catch(error => console.error(`Error ${error}.`))
+            .then(response => console.log(`Data updated successfully, ${response}.`))
+            .then(location.reload());
+        }   
+    } else if (method === 'POST') {
+        input_m_send.onclick = function(e) {
+            e.preventDefault();
 
-    input_m_send.onclick = function(e) {
-        e.preventDefault()
-
-        fetch(`http://127.0.0.1:8000/movies/${movie_data.id}`, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT',
-            body: JSON.stringify({
-                'movie_title': analyzingData(input_m_title.value),
-                'movie_genres': analyzingData(input_m_genres.value),
-                'date': input_m_date.value,
-                'company_name': analyzingData(input_m_company.value)
-            })
-        }).then(res => res.json())
-        .catch(error => console.error(`Error ${error}.`))
-        .then(response => console.log(`Data updated successfully, ${response}.`))
+            fetch(`http://127.0.0.1:8000/movies`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({
+                    'movie_title': analyzingData(input_m_title.value),
+                    'movie_genres': analyzingData(input_m_genres.value),
+                    'date': input_m_date.value,
+                    'company_name': analyzingData(input_m_company.value)
+                })
+            }).then(res => res.json())
+            .catch(error => console.error(`Error ${error}.`))
+            .then(response => console.log(`Data updated successfully, ${response}.`))
+            .then(location.reload());
+        }
     }
 }
 
