@@ -154,8 +154,6 @@ function createFormulary(movie_data, context, method) {
         input_m_genres.setAttribute("value", `${movie_data.movie_genres}`)
         input_m_date.setAttribute("value", `${movie_data.date}`)
         input_m_company.setAttribute("value", `${movie_data.company_name}`)
-        // formulary.setAttribute("action", `http://127.0.0.1:8000/movies/${movie_data.movie_title}`);
-        // formulary.setAttribute("method", "post");
 
     } else if (method === 'POST') {
         formulary.setAttribute("action", `http://127.0.0.1:8000/movies`);
